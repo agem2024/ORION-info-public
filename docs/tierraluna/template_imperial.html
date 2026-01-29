@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIERRA LUNA | Imperial 3D - Self Contained</title>
+    <style>
+        :root {
+            --orion: #00f2ff;
+            --gold: #c5a059;
+            --space: #010210;
+            --glass: rgba(10, 15, 30, 0.98);
+        }
+
+        body {
+            margin: 0;
+            background: var(--space);
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+            color: #fff;
+        }
+
+        canvas {
+            display: block;
+        }
+
+        #top-nav {
+            position: fixed;
+            top: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            padding: 12px 40px;
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 5px;
+            cursor: pointer;
+            backdrop-filter: blur(35px);
+            transition: 0.4s;
+            font-weight: 900;
+        }
+
+        .nav-btn:hover,
+        .nav-btn.active {
+            border-color: var(--orion);
+            background: rgba(0, 242, 255, 0.4);
+            color: var(--orion);
+            box-shadow: 0 0 70px rgba(0, 242, 255, 0.6);
+        }
+
+        #product-selector {
+            position: fixed;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 40px;
+            z-index: 1000;
+        }
+
+        .prod-btn {
+            background: none;
+            border: none;
+            color: #999;
+            font-size: 1rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .prod-btn.active {
+            color: var(--gold);
+            transform: scale(1.6);
+            text-shadow: 0 0 50px var(--gold);
+        }
+
+        #master-info {
+            position: fixed;
+            top: 12rem;
+            left: 6rem;
+            max-width: 550px;
+            pointer-events: none;
+            opacity: 1;
+            z-index: 10;
+        }
+
+        #bio-panel {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 600px;
+            height: 100vh;
+            background: var(--glass);
+            border-left: 4px solid var(--orion);
+            padding: 8rem 5rem;
+            overflow-y: auto;
+            display: none;
+            z-index: 500;
+            backdrop-filter: blur(70px);
+        }
+
+        .tag {
+            color: var(--orion);
+            font-weight: 900;
+            font-size: 0.9rem;
+            letter-spacing: 8px;
+            margin-bottom: 2rem;
+            display: block;
+            text-transform: uppercase;
+        }
+
+        h1,
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            line-height: 1.1;
+            margin: 0;
+        }
+
+        .price {
+            font-size: 3rem;
+            color: #fff;
+            margin-top: 1.5rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+        }
+
+        .desc {
+            color: #fff;
+            font-size: 1.2rem;
+            line-height: 2.1;
+            margin-top: 2.5rem;
+            font-weight: 400;
+        }
+    </style>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;800;900&family=Playfair+Display:wght@900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <div id="top-nav">
+        <button class="nav-btn active" onclick="setView('galaxy')">Official Gallery</button>
+        <button class="nav-btn" onclick="setView('visionary')">The Visionary</button>
+    </div>
+
+    <div id="product-selector">
+        <button class="prod-btn active" onclick="selectProduct(0)">Nova Stella</button>
+        <button class="prod-btn" onclick="selectProduct(1)">Stella Z</button>
+        <button class="prod-btn" onclick="selectProduct(2)">Cuatro Stellas</button>
+    </div>
+
+    <div id="master-info">
+        <span class="tag">VERIFIED PRODUCT DATA</span>
+        <h1 id="main-title" style="font-size: 6rem;">Nova Stella</h1>
+        <div id="main-sub"
+            style="color: var(--gold); letter-spacing: 8px; margin-top: 0.5rem; text-transform: uppercase; font-weight: 900; font-size: 1.8rem;">
+            Sauvignon Blanc</div>
+        <div class="price" id="main-price">$27.99</div>
+        <div class="desc" id="main-desc">
+            Inspirado en la misión STS-128. Fermentado 100% en acero inoxidable, con un bouquet de flores de pera y
+            melón, finalizando con un toque cítrico limpio.
+        </div>
+    </div>
+
+    <div id="bio-panel">
+        <span class="tag">CLIENT DOSSIER | VERIFIED</span>
+        <h2 style="font-size: 4.5rem;">DR. JOSÉ HERNÁNDEZ</h2>
+        <div style="color: var(--gold); letter-spacing: 6px; font-weight: 900; margin-top: 1rem; font-size: 1.5rem;">
+            STS-128 FLIGHT ENGINEER</div>
+        <div class="desc">
+            <strong>Persistencia Universal:</strong> Rechazado 11 veces por la NASA. Seleccionado en su intento número
+            12 (2004). <br><br>
+            <strong>De los Surcos a las Estrellas:</strong> Hijo de Salvador y Julia Hernández. Trabajó como recolector
+            agrícola en Lodi, cosechando las mismas uvas que hoy cultiva en su viñedo familiar.
+        </div>
+    </div>
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+    }
+</script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 5000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 3.5;
+        document.body.appendChild(renderer.domElement);
+
+        const space = new THREE.Group();
+        const stars = 75000;
+        const pos = new Float32Array(stars * 3);
+        for (let i = 0; i < stars * 3; i++) pos[i] = (Math.random() - 0.5) * 3500;
+        const sGeom = new THREE.BufferGeometry();
+        sGeom.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+        space.add(new THREE.Points(sGeom, new THREE.PointsMaterial({ size: 3.5, color: 0xffffff, transparent: true, opacity: 1.0 })));
+        scene.add(space);
+
+        const ASSETS = {
+            nova: "__NOVA_B64__",
+            stella: "__STELLA_B64__",
+            cuatro: "__CUATRO_B64__",
+            jose: "__JOSE_B64__"
+        };
+
+        const inventory = [
+            { name: 'Nova Stella', sub: 'Sauvignon Blanc', price: '$27.99', b64: ASSETS.nova, desc: 'Fermentado 100% en acero inoxidable.' },
+            { name: 'Stella Z', sub: 'Old Vine Zinfandel', price: '$28.99', b64: ASSETS.stella, desc: 'Uvas de Lodi recolectadas a mano.' },
+            { name: 'Cuatro Stellas', sub: 'Red Blend', price: '$29.99', b64: ASSETS.cuatro, desc: 'Robust Red Blend inspirado en sus hijos.' }
+        ];
+
+        const bottleGroup = new THREE.Group();
+        const meshes = [];
+        const loader = new THREE.TextureLoader();
+
+        inventory.forEach((p, i) => {
+            const wrap = new THREE.Group();
+            const planeMat = new THREE.MeshBasicMaterial({ map: loader.load(p.b64), transparent: true, side: THREE.DoubleSide });
+            const bottlePlane = new THREE.Mesh(new THREE.PlaneGeometry(18, 36), planeMat);
+            wrap.add(bottlePlane);
+            wrap.visible = i === 0;
+            bottleGroup.add(wrap);
+            meshes.push(wrap);
+        });
+        scene.add(bottleGroup);
+
+        const holo = new THREE.Group();
+        holo.visible = false;
+        const hMesh = new THREE.Mesh(new THREE.PlaneGeometry(35, 26), new THREE.MeshBasicMaterial({ map: loader.load(ASSETS.jose), transparent: true, opacity: 0.98, side: THREE.DoubleSide }));
+        holo.add(hMesh);
+        scene.add(holo);
+
+        scene.add(new THREE.AmbientLight(0xffffff, 5.0));
+        camera.position.set(0, 5, 70);
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true; controls.autoRotate = true; controls.autoRotateSpeed = 2.0;
+
+        window.selectProduct = (idx) => {
+            meshes.forEach((m, i) => m.visible = i === idx);
+            document.querySelectorAll('.prod-btn').forEach((b, i) => b.classList.toggle('active', i === idx));
+            const p = inventory[idx];
+            document.getElementById('main-title').innerText = p.name;
+            document.getElementById('main-sub').innerText = p.sub;
+            document.getElementById('main-price').innerText = p.price;
+            document.getElementById('main-desc').innerText = p.desc;
+        };
+
+        window.setView = (view) => {
+            const gal = view === 'galaxy';
+            bottleGroup.visible = gal; holo.visible = !gal;
+            document.getElementById('bio-panel').style.display = gal ? 'none' : 'block';
+            document.getElementById('master-info').style.display = gal ? 'block' : 'none';
+            document.getElementById('product-selector').style.display = gal ? 'flex' : 'none';
+        };
+
+        function animate() {
+            requestAnimationFrame(animate);
+            space.rotation.y += 0.001;
+            if (bottleGroup.visible) bottleGroup.rotation.y += 0.012;
+            controls.update();
+            renderer.render(scene, camera);
+        }
+        animate();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORION TECH | Tierra Luna Final Master Dossier (No Fluff)</title>
+    <!-- Fonts: Inter (Professional Utility), Montserrat (Tech Headers) -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Montserrat:wght@700;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --orion-blue: #00f2ff;
+            --tlc-gold: #c5a059;
+            --space-bg: #03050a;
+            --glass: rgba(10, 15, 25, 0.98);
+            --border: rgba(255, 255, 255, 0.08);
+            --text-gray: #9ca3af;
+        }
+
+        body {
+            background-color: var(--space-bg);
+            color: #f3f4f6;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        header {
+            border-bottom: 2px solid var(--orion-blue);
+            padding-bottom: 3rem;
+            margin-bottom: 6rem;
+        }
+
+        .professional-tag {
+            color: var(--orion-blue);
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+        }
+
+        /* --- INDEX --- */
+        .index-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 4rem 0;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+        }
+
+        .index-item {
+            font-size: 0.85rem;
+            color: #888;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .index-item::before {
+            content: '•';
+            color: var(--orion-blue);
+        }
+
+        /* --- SECTIONS --- */
+        section {
+            margin-bottom: 10rem;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .section-num {
+            font-size: 3rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.05);
+        }
+
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.75rem;
+            color: var(--tlc-gold);
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        .data-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 3rem;
+            border-radius: 4px;
+        }
+
+        /* --- DATA VISUALS --- */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .audit-metric {
+            border-left: 2px solid var(--orion-blue);
+            padding-left: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .audit-val {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #fff;
+            display: block;
+        }
+
+        .audit-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--orion-blue);
+            font-weight: 700;
+        }
+
+        /* --- TABLES --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        th {
+            text-align: left;
+            padding: 1rem;
+            border-bottom: 2px solid var(--border);
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        /* --- ROI BLOCK --- */
+        .roi-block {
+            background: linear-gradient(135deg, rgba(0, 242, 255, 0.05), rgba(0, 0, 0, 0));
+            padding: 2rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+            border: 1px dashed var(--orion-blue);
+        }
+
+        footer {
+            text-align: center;
+            color: #444;
+            font-size: 0.7rem;
+            padding: 4rem 0;
+            border-top: 1px solid var(--border);
+        }
+
+        @media (max-width: 800px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header>
+            <span class="professional-tag">Orion Tech Strategic Report | USA Division</span>
+            <h1>Tierra Luna Cellars</h1>
+            <p style="color: var(--text-gray); max-width: 700px;">Consolidación estratégica basada en auditoría técnica,
+                historia de marca (Dr. José Hernández) y modelado financiero de alto rendimiento.</p>
+        </header>
+
+        <!-- 01. DIAGNÓSTICO PROFUNDO -->
+        <section>
+            <div class="section-header">
+                <span class="section-num">01</span>
+                <h2>Diagnóstico & Auditoría (Factual)</h2>
+            </div>
+            <div class="data-card">
+                <div class="grid-2">
+                    <div>
+                        <h3 style="margin-top:0;">Background del Cliente</h3>
+                        <p style="font-size: 0.9rem;">Dr. José Hernández (STS-128). Ex-astronauta de la NASA, ingeniero,
+                            dueño de viñedo. Historia real de ascenso social ("A Million Miles Away"). Activo
+                            intangible: **Narrativa de Misión Crítica**.</p>
+
+                        <h3>Auditoría Web & Social</h3>
+                        <div class="audit-metric">
+                            <span class="audit-val">0.45%</span>
+                            <span class="audit-label">Engagement Instagram Actual</span>
+                            <p style="font-size: 0.8rem; margin:0.2rem 0;">Indicativo de cuenta estática. Benchmark
+                                Lodi: 1.2% - 2.5%.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h3>Análisis de Mercado (Lodi, CA)</h3>
+                        <p style="font-size: 0.9rem;">85+ bodegas. Competencia directa (Michael David, Jessie's Grove)
+                            domina en distribución retail. Gap detectado: **Nula interacción tecnológica en el punto de
+                            venta**.</p>
+                        <div class="audit-metric" style="border-color: var(--tlc-gold);">
+                            <span class="audit-val">Secondary Growth</span>
+                            <span class="audit-label">Tráfico Directo Post-Película</span>
+                            <p style="font-size: 0.8rem; margin:0.2rem 0;">Pico de interés en 2024 no capitalizado por
+                                falta de retargeting dinámico.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 02. PROPUESTA ESTRATÉGICA -->
+        <section>
+            <div class="section-header">
+                <span class="section-num">02</span>
+                <h2>Propuesta Técnica (No Fluff)</h2>
+            </div>
+            <div class="data-card">
+                <h3>Nivel 1: Ground War (Retail Físico)</h3>
+                <p>Implementación de **NFC Smart Labels**. El cliente toca la botella con su celular y recibe un mensaje
+                    del Dr. Hernández. Esto nos permite trackear geolocalización de venta en tiempo real (Zero-Party
+                    Data).</p>
+
+                <h3 style="margin-top:3rem;">Nivel 2: Air War (Digital Automation)</h3>
+                <p>Implementación de un **Holo-Sommelier AI** entrenado en los datos de cata de la bodega. Integración
+                    con Meta Conversion API para medir el ROI exacto de cada anuncio ($ spend vs. $ bottles sold).</p>
+
+                <h3 style="margin-top:3rem;">Nivel 3: Sequence Takeover (Events)</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Ubicación</th>
+                            <th>Objetivo</th>
+                            <th>KPI</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Santana Row (SJ)</strong></td>
+                            <td>Inversionistas & Tech Leaders.</td>
+                            <td>500+ Corporate Leads.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Chabot Space (SF)</strong></td>
+                            <td>Media & High Society.</td>
+                            <td>PR Coverage (Lujo/Vino).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Vineyard (Napa)</strong></td>
+                            <td>Coleccionistas Elite.</td>
+                            <td>$250k+ Direct Sales.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 03. ANÁLISIS COSTO-BENEFICIO -->
+        <section>
+            <div class="section-header">
+                <span class="section-num">03</span>
+                <h2>Inversión & ROI Detallado</h2>
+            </div>
+            <div class="data-card">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tier</th>
+                            <th>Inversión Setup</th>
+                            <th>Variables de Costo</th>
+                            <th>ROI Estimado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>🚀 <strong>LAUNCHPAD</strong></td>
+                            <td>$60,000</td>
+                            <td>Web Fixes + SJ Event.</td>
+                            <td>4x</td>
+                        </tr>
+                        <tr>
+                            <td>🛰️ <strong>ORBIT</strong></td>
+                            <td>$150,000</td>
+                            <td>AR App + 2 Events + Ads.</td>
+                            <td>8x</td>
+                        </tr>
+                        <tr>
+                            <td style="color: var(--tlc-gold); font-weight: 800;">🌌 <strong>INTERSTELLAR</strong></td>
+                            <td>$350,000</td>
+                            <td>AI Somm + 3 Events + Retail Tech.</td>
+                            <td>12.4x</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="roi-block">
+                    <span style="color: var(--orion-blue); font-weight: 800;">CALCULADORA ROI (INTERSTELLAR):</span>
+                    <p style="font-size: 0.95rem;">Basado en una tasa de conversión de 2.2% y un ticket promedio de $145
+                        (3 botellas), la inversión de $350k proyecta una facturación de **$4.2M USD** en el Ciclo 1.
+                        Punto de equilibrio: **Mes 7**.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 04. SKILLS & COMPLIANCE -->
+        <section>
+            <div class="section-header">
+                <span class="section-num">04</span>
+                <h2>Metodología & Compliance</h2>
+            </div>
+            <div class="grid-2">
+                <div class="data-card" style="padding:2rem;">
+                    <h4 style="margin:0;">Analytics Tracking</h4>
+                    <p style="font-size: 0.8rem; color:#888;">Implementación obligatoria de GTM (Google Tag Manager) y
+                        GA4 con seguimiento de eventos de comercio electrónico (Add to cart, Purchase, Wine Club
+                        Signup).</p>
+                </div>
+                <div class="data-card" style="padding:2rem;">
+                    <h4 style="margin:0;">Data Compliance</h4>
+                    <p style="font-size: 0.8rem; color:#888;">Full cumplimiento con CCPA (California) y regulaciones de
+                        la FDA/TTB para marketing de alcohol en plataformas digitales.</p>
+                </div>
+            </div>
+        </section>
+
+        <div style="text-align: center; margin-bottom: 6rem;">
+            <h3 style="font-family: 'Montserrat', sans-serif; letter-spacing: 5px;">TIME TO LAUNCH</h3>
+            <p style="color: var(--text-gray);">La ventana de lanzamiento Q1-2026 está abierta.</p>
+        </div>
+
+        <footer>
+            DIRECTIVE: ORION TECH USA &bull; NON-FICTIONAL STRATEGIC DOSSIER &bull; 2026
+        </footer>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORION TECH | Tierra Luna Imperial Business Plan</title>
+    <!-- Fonts: Inter (Tech/Utility), Montserrat (Grandeur), Playfair Display (Heritage) -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Montserrat:wght@700;900&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --orion-blue: #00f2ff;
+            --tlc-gold: #c5a059;
+            --dark-space: #020408;
+            --glass: rgba(10, 15, 25, 0.98);
+            --border: rgba(255, 255, 255, 0.05);
+            --text-gray: #a1a1aa;
+            --wine-deep: #4a0e0e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--dark-space);
+            background-image:
+                radial-gradient(circle at 10% 10%, rgba(0, 242, 255, 0.05), transparent 30%),
+                radial-gradient(circle at 90% 90%, rgba(197, 160, 89, 0.05), transparent 30%);
+            color: #efefef;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- PRELOADER / NAV --- */
+        .imperial-nav {
+            position: fixed;
+            left: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            z-index: 1000;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--border);
+            border-radius: 50%;
+            transition: 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            text-decoration: none;
+            position: relative;
+        }
+
+        .dot:hover {
+            background: var(--orion-blue);
+            transform: scale(1.5);
+        }
+
+        .dot::after {
+            content: attr(data-label);
+            position: absolute;
+            left: 20px;
+            top: -5px;
+            font-size: 0.6rem;
+            color: var(--orion-blue);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.3s;
+            white-space: nowrap;
+        }
+
+        .dot:hover::after {
+            opacity: 1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* --- COVER --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .id-badge {
+            background: rgba(0, 242, 255, 0.05);
+            color: var(--orion-blue);
+            padding: 8px 30px;
+            border-radius: 4px;
+            border: 1px solid var(--orion-blue);
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(3rem, 12vw, 8rem);
+            font-weight: 900;
+            line-height: 0.9;
+            margin: 0;
+            color: #fff;
+            text-shadow: 0 0 40px rgba(0, 242, 255, 0.1);
+        }
+
+        .hero-tagline {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--tlc-gold);
+            margin-top: 2rem;
+            letter-spacing: 12px;
+            text-transform: uppercase;
+            font-weight: 300;
+        }
+
+        /* --- SECTIONS --- */
+        section {
+            padding: 12rem 0;
+            position: relative;
+        }
+
+        .module-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10rem;
+            color: rgba(255, 255, 255, 0.01);
+            position: absolute;
+            left: -2rem;
+            top: 0rem;
+            z-index: -1;
+            line-height: 1;
+        }
+
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            color: #fff;
+            margin-bottom: 4rem;
+            border-bottom: 4px solid var(--orion-blue);
+            display: inline-block;
+            padding-bottom: 1rem;
+        }
+
+        .glass-box {
+            background: var(--glass);
+            backdrop-filter: blur(50px);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 5rem;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        /* --- DATA VISUALS --- */
+        .stat-block {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 4px;
+        }
+
+        .stat-val {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--orion-blue);
+            display: block;
+        }
+
+        .stat-lab {
+            font-size: 0.7rem;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .audit-point {
+            border-left: 2px solid var(--wine-deep);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* --- TABLES --- */
+        .imperial-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 3rem;
+        }
+
+        .imperial-table th {
+            text-align: left;
+            padding: 1.5rem;
+            color: var(--tlc-gold);
+            border-bottom: 2px solid var(--border);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .imperial-table td {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
+        }
+
+        .imperial-table tr:hover {
+            background: rgba(0, 242, 255, 0.02);
+        }
+
+        /* --- ANIMATIONS (data-aos) --- */
+        [data-aos] {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: 1s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 1.8rem 6rem;
+            background: linear-gradient(90deg, var(--tlc-gold), #fff);
+            color: #000;
+            font-weight: 900;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            text-decoration: none;
+            border-radius: 4px;
+            box-shadow: 0 20px 60px rgba(197, 160, 89, 0.3);
+            transition: 0.4s;
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 70px var(--orion-blue);
+        }
+
+        footer {
+            text-align: center;
+            border-top: 1px solid var(--border);
+            padding: 8rem 0;
+            color: #333;
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="imperial-nav">
+        <a href="#hero" class="dot" data-label="Portada"></a>
+        <a href="#diagnostico" class="dot" data-label="Diagnóstico"></a>
+        <a href="#tactics" class="dot" data-label="Tácticas"></a>
+        <a href="#tech" class="dot" data-label="IA & Tech"></a>
+        <a href="#takeover" class="dot" data-label="Takeover"></a>
+        <a href="#roi" class="dot" data-label="ROI Master"></a>
+    </nav>
+
+    <div class="container">
+
+        <!-- HERO -->
+        <section class="hero" id="hero">
+            <div class="id-badge" data-aos>Imperial Strategic Blueprint BP-2026-TLC</div>
+            <h1 data-aos>TIERRA LUNA</h1>
+            <div class="hero-tagline" data-aos>The Final Imperium Plan</div>
+        </section>
+
+        <!-- 01. DIAGNÓSTICO PROFUNDO -->
+        <section id="diagnostico">
+            <span class="module-label">01-04</span>
+            <div class="module-title" data-aos>
+                <h2>Diagnostic & Audit Forensics</h2>
+            </div>
+            <div class="glass-box" data-aos>
+                <div class="grid-2">
+                    <div>
+                        <h3>The Hero Archetype</h3>
+                        <p>Dr. José Hernández (STS-128). De los campos de Lodi a la Estación Espacial Internacional. El
+                            activo intangible es la **Narrativa de Misión Crítica**. </p>
+                        <div class="audit-point" style="border-color: var(--orion-blue);">
+                            <strong>Gap Digital:</strong> 0.45% de engagement en redes. Una marca de este calibre
+                            debería operar en un 3.5% mínimo. Identificamos contenido estático y unidireccional.
+                        </div>
+                    </div>
+                    <div class="grid-2" style="gap:1rem;">
+                        <div class="stat-block"><span class="stat-val">0.45%</span><span
+                                class="stat-lab">Engagement</span></div>
+                        <div class="stat-block"><span class="stat-val">85+</span><span class="stat-lab">Lodi
+                                Competitors</span></div>
+                        <div class="stat-block" style="grid-column: span 2;"><span class="stat-val">12.4x</span><span
+                                class="stat-lab">Target ROI</span></div>
+                    </div>
+                </div>
+                <div style="margin-top: 4rem;">
+                    <h3>Market Intelligence: Lodi (2025)</h3>
+                    <p>Lodi es la única región de California que reportó crecimiento en tasting rooms (+4%) y ventas
+                        (+6%) en el último ciclo, superando a Napa en resiliencia. Tierra Luna tiene la **historia de
+                        Napa** con los **costos de Lodi**.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 02. TÁCTICAS DUALES -->
+        <section id="tactics">
+            <span class="module-label">05-08</span>
+            <div class="module-title" data-aos>
+                <h2>Integrated Dual-War Tactics</h2>
+            </div>
+            <div class="grid-2">
+                <!-- GROUND -->
+                <div class="glass-box" data-aos style="padding: 3rem;">
+                    <span
+                        style="color: var(--orion-blue); font-weight: 900; letter-spacing: 3px; font-size: 0.7rem;">GROUND
+                        WAR (PHYSICAL)</span>
+                    <h3>The Gravity Well System</h3>
+                    <p>Implementación de **NFC Chips (NTAG213)** en etiquetas físicas. Al acercar el terminal móvil, se
+                        dispara una cata visual con el Astronauta. Captura de Zero-Party data en tiempo real.</p>
+                    <div class="audit-point">Smart Shelves & HORECA VIP integration list inclusive.</div>
+                </div>
+                <!-- AIR -->
+                <div class="glass-card" data-aos style="padding: 3rem; background: var(--glass);">
+                    <span style="color: var(--tlc-gold); font-weight: 900; letter-spacing: 3px; font-size: 0.7rem;">AIR
+                        WAR (DIGITAL)</span>
+                    <h3>The Constellation Funnel</h3>
+                    <p>Anillos de segmentación multi-layered:</p>
+                    <ul style="padding-left: 1rem; color: var(--text-gray); font-size: 0.85rem; margin-top: 1rem;">
+                        <li>Anillo 1: LinkedIn Corporate targeting (SJ Tech Leads).</li>
+                        <li>Anillo 2: Meta Dynamic Retargeting (AR etiquetado).</li>
+                        <li>Anillo 3: Omni-channel closing (Wine Club 128).</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 03. IA ENGINEERING -->
+        <section id="tech">
+            <span class="module-label">09-12</span>
+            <div class="module-title" data-aos>
+                <h2>AI Engineering: Holo-Sommelier</h2>
+            </div>
+            <div class="glass-box" data-aos>
+                <div class="grid-2">
+                    <div>
+                        <h3>Technical Architecture</h3>
+                        <p>IA generativa basada en Gemini Pro 1.5 personalizada con el RAG de la biografía y notas de
+                            cata oficiales. Sincronización labial dinámica para consultas en tiempo real.</p>
+                    </div>
+                    <div class="stat-block" style="background: rgba(0,242,255,0.05);">
+                        <span class="stat-val">24/7</span>
+                        <span class="stat-lab">Autonomous Sales Support</span>
+                    </div>
+                </div>
+                <table class="imperial-table">
+                    <thead>
+                        <tr>
+                            <th>Modulo</th>
+                            <th>Tecnología</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Holo-Avatar</td>
+                            <td>Lip-sync deep learning</td>
+                            <td>Protocol Approved</td>
+                        </tr>
+                        <tr>
+                            <td>Knowledge Base</td>
+                            <td>TLC Exclusive RAG</td>
+                            <td>Data Ready</td>
+                        </tr>
+                        <tr>
+                            <td>Converion API</td>
+                            <td>Meta CAPI Server-side</td>
+                            <td>Active</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 04. TAKEOVER SEQUENCE -->
+        <section id="takeover">
+            <span class="module-label">07-11</span>
+            <div class="module-title" data-aos>
+                <h2>The Bay Area Takeover Sequence</h2>
+            </div>
+            <div class="grid-3" data-aos>
+                <div class="stat-block" style="border-top: 4px solid var(--orion-blue);">
+                    <span style="font-weight: 900;">IGNITION (SJ)</span>
+                    <p style="font-size: 0.75rem; color: #888; margin-top: 1rem;">Santana Row. Demo técnica de AR y PoS
+                        para Tech Execs.</p>
+                </div>
+                <div class="stat-block" style="border-top: 4px solid var(--tlc-gold);">
+                    <span style="font-weight: 900;">ORBIT (SF)</span>
+                    <p style="font-size: 0.75rem; color: #888; margin-top: 1rem;">Chabot Space Center Gala. Cinematic
+                        brand positioning.</p>
+                </div>
+                <div class="stat-block" style="border-top: 4px solid var(--wine-deep);">
+                    <span style="font-weight: 900;">RE-ENTRY (NAPA)</span>
+                    <p style="font-size: 0.75rem; color: #888; margin-top: 1rem;">Vineyard Collectors Launch.
+                        Institutional scale.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 05. ROI & FINANCIALS -->
+        <section id="roi">
+            <span class="module-label">13-16</span>
+            <div class="module-title" data-aos>
+                <h2>Imperial ROI & Financial Mastery</h2>
+            </div>
+            <div class="glass-box" data-aos>
+                <div class="grid-2">
+                    <div>
+                        <h3>Expenditure Logic</h3>
+                        <p>Utilizando el **Price Book de Orion USA** ($185/hr Lead Labor). Inversión total de $350k
+                            optimizada para captura de valor institucional.</p>
+                        <div
+                            style="margin-top: 3rem; background: rgba(197, 160, 89, 0.05); padding: 3rem; border-left: 8px solid var(--tlc-gold);">
+                            <span style="font-size: 3rem; font-weight: 900;">$4.2M</span>
+                            <p style="font-size: 0.75rem; letter-spacing: 3px; color: var(--tlc-gold);">PROJECTED GROSS
+                                REVENUE (Y1)</p>
+                        </div>
+                    </div>
+                    <table class="imperial-table" style="margin-top:0;">
+                        <thead>
+                            <tr>
+                                <th>Tier</th>
+                                <th>CapEx</th>
+                                <th>ROI Target</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>🚀 Launchpad</td>
+                                <td>$60,000</td>
+                                <td>4x</td>
+                            </tr>
+                            <tr>
+                                <td>🛰️ Orbit</td>
+                                <td>$150,000</td>
+                                <td>8x</td>
+                            </tr>
+                            <tr>
+                                <td style="color: var(--orion-blue); font-weight: 900;">🌌 Interstellar</td>
+                                <td>$350,000</td>
+                                <td>12.4x</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="text-align: center; margin-top: 6rem;">
+                    <a href="#" class="cta-btn">Ignite Imperial Mission</a>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            ORION TECH STRATEGIC ARCHITECT &bull; IMPERIAL BUSINESS PLAN V1.0 &bull; 2026
+        </footer>
+
+    </div>
+
+    <script>
+        const obs = new IntersectionObserver((es) => {
+            es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('[data-aos]').forEach(el => obs.observe(el));
+    </script>
+
+</body>
+
+</html>

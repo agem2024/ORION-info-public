@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORION TECH | Tierra Luna Strategy V3</title>
+    <!-- Fonts: Inter for Tech, Playfair Display for Luxury/Wine -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            /* ORION CORPORATE COLORS */
+            --orion-blue: #00f2ff;
+            --orion-dark: #050510;
+            --text-gray: #a0a0b0;
+
+            /* CLIENT BRAND COLORS (Inferred) */
+            --tlc-gold: #c5a059;
+            /* Stardust Gold */
+            --tlc-red: #7a1f2e;
+            /* Stella Z Red */
+            --tlc-space: #0b0e14;
+            /* Deep Space */
+
+            /* UI VARS */
+            --glass: rgba(20, 25, 40, 0.7);
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            background-color: var(--tlc-space);
+            background-image:
+                radial-gradient(circle at 0% 0%, rgba(0, 242, 255, 0.05), transparent 40%),
+                radial-gradient(circle at 100% 100%, rgba(197, 160, 89, 0.05), transparent 40%);
+            color: #e0e0e0;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        /* --- HEADER SECTION --- */
+        header {
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 2rem;
+            margin-bottom: 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .brand-pill {
+            background: rgba(0, 242, 255, 0.1);
+            color: var(--orion-blue);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            border: 1px solid rgba(0, 242, 255, 0.2);
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin: 1rem 0 0.5rem 0;
+            color: #fff;
+        }
+
+        .subtitle {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+        }
+
+        /* --- CONTENT MODULES (Orion Standard) --- */
+        .module {
+            margin-bottom: 4rem;
+        }
+
+        .module-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .module-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--border);
+            line-height: 1;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin: 0;
+            color: var(--tlc-gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* --- TABLES (Orion Standard) --- */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--glass);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .data-table th {
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-gray);
+            font-weight: 600;
+            text-align: left;
+            padding: 1.2rem;
+            border-bottom: 1px solid var(--border);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        .data-table td {
+            padding: 1.2rem;
+            border-bottom: 1px solid var(--border);
+            color: #fff;
+        }
+
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* --- BOTTLE VISUALIZER (Placeholder Solution) --- */
+        .visual-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .bottle-card {
+            background: linear-gradient(180deg, rgba(20, 20, 30, 0) 0%, rgba(20, 20, 30, 0.8) 100%);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bottle-placeholder {
+            height: 300px;
+            width: 80px;
+            margin: 0 auto 1.5rem;
+            background: #222;
+            border-radius: 40px 40px 10px 10px;
+            position: relative;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Attempt to simulate the wines with CSS colors */
+        .bottle-red {
+            background: linear-gradient(135deg, #400, #200);
+        }
+
+        .bottle-white {
+            background: linear-gradient(135deg, #fffae0, #c5a059);
+            opacity: 0.8;
+        }
+
+        /* Label simulation */
+        .bottle-label {
+            position: absolute;
+            top: 30%;
+            left: 10%;
+            right: 10%;
+            height: 40%;
+            background: #111;
+            border: 1px solid var(--tlc-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--tlc-gold);
+            font-family: 'Playfair Display', serif;
+            font-size: 0.8rem;
+        }
+
+        .btn-action {
+            display: inline-block;
+            background: var(--tlc-gold);
+            color: #000;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 4px;
+            margin-top: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+
+        .btn-action:hover {
+            background: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(197, 160, 89, 0.4);
+        }
+
+        /* DISCLAIMER */
+        .disclaimer-box {
+            background: rgba(255, 50, 50, 0.1);
+            border-left: 4px solid #ff3333;
+            padding: 1rem;
+            margin-top: 4rem;
+            font-size: 0.85rem;
+            color: #aaa;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- HEADER: ORION STANDARD -->
+        <header>
+            <div>
+                <div class="brand-pill">ORION TECH STRATEGIC DEPT</div>
+                <h1>The Omnichannel Universe</h1>
+                <div class="subtitle">Propuesta Estratégica: Tierra Luna Cellars &times; Orion Tech</div>
+            </div>
+            <div style="text-align: right;">
+                <div style="font-size: 0.9rem; color: var(--tlc-gold);">PREPARED FOR:</div>
+                <div style="font-weight: 600;">Dr. José Hernández</div>
+                <div style="color: var(--text-gray); font-size: 0.8rem;">CEO, Tierra Luna Cellars</div>
+            </div>
+        </header>
+
+        <!-- 1. RESUMEN EJECUTIVO -->
+        <section class="module">
+            <div class="module-header">
+                <span class="module-num">01</span>
+                <h2>Resumen Ejecutivo</h2>
+            </div>
+            <p>
+                <strong>El Problema:</strong> Tierra Luna tiene una historia de "Clase Mundial" (Astronauta/NASA) pero
+                una presencia digital de "Clase Turista". El sitio web es transaccional, no experiencial.
+            </p>
+            <p>
+                <strong>La Solución ORION:</strong> Implementar nuestro ecosistema <em>"Gravity Well"</em>. No es solo
+                un rediseño web; es una fusión de <strong>Retail Físico Intensivo</strong> (HORECA) con
+                <strong>Inteligencia Digital</strong> (Pixels/Retargeting).
+            </p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Objetivo Estratégico</th>
+                        <th>Meta (12 Meses)</th>
+                        <th>Tecnología Clave</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>🧪 Captura de Datos</td>
+                        <td>15,000 Perfiles Únicos</td>
+                        <td>Gravity Well (NFC/POS)</td>
+                    </tr>
+                    <tr>
+                        <td>🍷 Ventas D2C (Direct to Consumer)</td>
+                        <td>$4.2M USD</td>
+                        <td>Constellation Ad Model</td>
+                    </tr>
+                    <tr>
+                        <td>🌟 Brand Equity</td>
+                        <td>Top 3 "Celebrity Wines"</td>
+                        <td>Holo-Sommelier AR</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 2. PRODUCT VISUALIZATION -->
+        <section class="module">
+            <div class="module-header">
+                <span class="module-num">02</span>
+                <h2>El Ecosistema "Stellar"</h2>
+            </div>
+            <p>Transformaremos la botella física en un portal digital.</p>
+
+            <!-- VISUAL MOCKUPS (Using CSS to simulate the bottles neatly) -->
+            <div class="visual-grid">
+                <!-- ITEM 1 -->
+                <div class="bottle-card">
+                    <h3 style="color: var(--tlc-gold); margin-top: 0;">Stella Z</h3>
+                    <div style="font-size: 0.8rem; color: var(--text-gray); margin-bottom: 1rem;">Zinfandel Old Vine
+                    </div>
+                    <div class="bottle-placeholder bottle-red">
+                        <div class="bottle-label">TIERRA LUNA</div>
+                    </div>
+                    <div style="font-size: 0.9rem;">
+                        <strong>Tech Layer:</strong> AR Storytelling<br>
+                        <span style="color: var(--text-gray);">Escanea para ver la historia del migrante.</span>
+                    </div>
+                </div>
+
+                <!-- ITEM 2 -->
+                <div class="bottle-card">
+                    <h3 style="color: var(--tlc-gold); margin-top: 0;">Nova Stella</h3>
+                    <div style="font-size: 0.8rem; color: var(--text-gray); margin-bottom: 1rem;">Sauvignon Blanc</div>
+                    <div class="bottle-placeholder bottle-white">
+                        <div class="bottle-label" style="background:#fff; color:#000;">NOVA</div>
+                    </div>
+                    <div style="font-size: 0.9rem;">
+                        <strong>Tech Layer:</strong> 3D Visualization<br>
+                        <span style="color: var(--text-gray);">Vista 360° en e-commerce.</span>
+                    </div>
+                </div>
+
+                <!-- ITEM 3 -->
+                <div class="bottle-card">
+                    <h3 style="color: var(--tlc-gold); margin-top: 0;">The Mission</h3>
+                    <div style="font-size: 0.8rem; color: var(--text-gray); margin-bottom: 1rem;">Merch & NFT</div>
+                    <div style="font-size: 3rem; margin: 2rem 0;">🚀</div>
+                    <div style="font-size: 0.9rem;">
+                        <strong>Tech Layer:</strong> Loyalty App<br>
+                        <span style="color: var(--text-gray);">"Mission Patches" digitales por compra.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. FINANCIAL PACKACOS (The Orion Table) -->
+        <section class="module">
+            <div class="module-header">
+                <span class="module-num">03</span>
+                <h2>Inversión & Retorno</h2>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th style="font-size: 1rem;">Paquete</th>
+                        <th>Alcance Físico</th>
+                        <th>Alcance Digital</th>
+                        <th>Inversión Estimada</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="font-weight: bold; color: #fff;">🚀 LAUNCHPAD</td>
+                        <td>Evento San José (1)</td>
+                        <td>Landing Page QR</td>
+                        <td>$45,000 - $60,000</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; color: var(--orion-blue);">🛰️ ORBIT (Recomendado)</td>
+                        <td>Eventos SJ + SF</td>
+                        <td>App AR + Ads Funnel</td>
+                        <td>$120,000 - $150,000</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; color: var(--tlc-gold);">🌌 INTERSTELLAR</td>
+                        <td>3 Eventos (Takeover) + Retail Displays</td>
+                        <td>Holo-Sommelier + 3D</td>
+                        <td>$250,000+</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 4. TIMELINE -->
+        <section class="module">
+            <div class="module-header">
+                <span class="module-num">04</span>
+                <h2>Roadmap Ejecución</h2>
+            </div>
+            <div style="border-left: 2px solid var(--border); padding-left: 2rem;">
+                <div style="margin-bottom: 2rem;">
+                    <div style="color: var(--orion-blue); font-weight: bold;">MES 1: IGNITION</div>
+                    <div style="color: var(--text-gray);">Desarrollo de App AR y Producción de Video "The Signal".</div>
+                </div>
+                <div style="margin-bottom: 2rem;">
+                    <div style="color: var(--orion-blue); font-weight: bold;">MES 2: LIFT-OFF</div>
+                    <div style="color: var(--text-gray);">Lanzamiento de Campaña Digital (Meta/LinkedIn). Inicio de
+                        Presale.</div>
+                </div>
+                <div>
+                    <div style="color: var(--tlc-gold); font-weight: bold;">MES 3: ORBIT (EVENTOS)</div>
+                    <div style="color: var(--text-gray);">Ejecución de Eventos Masivos (San José, SF, Napa). Activación
+                        de Influencers.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <div style="text-align: center; margin-top: 5rem;">
+            <p style="color: var(--text-gray); margin-bottom: 2rem;">"La tecnología es el nuevo lujo. Orion te lleva a
+                la estratosfera."</p>
+            <a href="#" class="btn-action">Aprobar Estrategia "Interstellar"</a>
+        </div>
+
+        <!-- LEGAL -->
+        <div class="disclaimer-box">
+            <strong>⚠️ NOTA DE ASSETS:</strong> Las imágenes de producto mostradas son simulaciones digitales debido a
+            restricciones de acceso al servidor del cliente (Error 503). Se reemplazarán con fotografía oficial de alta
+            resolución en la fase de "Ignition".
+        </div>
+
+    </div>
+
+    <!-- Auto-Load Script (Optional attempt to fetch client logo if CORS allows) -->
+    <script>
+        // Placeholder logic for dragging real assets
+        console.log("Orion Asset System: Ready for Client Files");
+    </script>
+
+</body>
+
+</html>

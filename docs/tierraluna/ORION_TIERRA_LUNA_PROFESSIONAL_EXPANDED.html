@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORION TECH | Tierra Luna Master Proposal ELITE</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --orion-blue: #00f2ff;
+            --tlc-gold: #c5a059;
+            --bg-space: #050510;
+            --glass: rgba(15, 20, 35, 0.9);
+            --border: rgba(255, 255, 255, 0.1);
+            --text-main: #e0e0e0;
+        }
+
+        body {
+            background-color: var(--bg-space);
+            background-image: radial-gradient(circle at 10% 10%, rgba(0, 242, 255, 0.05), transparent 30%);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+            scroll-behavior: smooth;
+        }
+
+        /* --- INDEXBAR --- */
+        .index-nav {
+            position: fixed;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .nav-item {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .nav-item:hover {
+            background: var(--orion-blue);
+            border-color: var(--orion-blue);
+            transform: scale(1.5);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 10rem;
+        }
+
+        .badge {
+            background: rgba(0, 242, 255, 0.1);
+            color: var(--orion-blue);
+            padding: 5px 15px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            border: 1px solid var(--orion-blue);
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            margin: 1.5rem 0;
+            color: #fff;
+            line-height: 1;
+        }
+
+        /* --- MODULES --- */
+        section {
+            margin-bottom: 10rem;
+        }
+
+        .module-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1rem;
+        }
+
+        .module-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--tlc-gold);
+            opacity: 0.5;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #fff;
+        }
+
+        .glass-box {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 3.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2rem;
+        }
+
+        /* --- TABLES --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+        }
+
+        th {
+            text-align: left;
+            padding: 1.2rem;
+            color: var(--tlc-gold);
+            border-bottom: 2px solid var(--border);
+            font-size: 0.8rem;
+        }
+
+        td {
+            padding: 1.2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* --- ANIMATIONS --- */
+        [data-aos] {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: 1s ease;
+        }
+
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--tlc-gold), #fff);
+            color: #000;
+            padding: 1.2rem 3.5rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 3rem;
+            box-shadow: 0 0 30px rgba(197, 160, 89, 0.3);
+        }
+
+        footer {
+            text-align: center;
+            border-top: 1px solid var(--border);
+            padding: 5rem 0;
+            color: #444;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="index-nav">
+        <a href="#intro" class="nav-item"></a>
+        <a href="#mkt" class="nav-item"></a>
+        <a href="#product" class="nav-item"></a>
+        <a href="#strategy" class="nav-item"></a>
+        <a href="#roi" class="nav-item"></a>
+    </div>
+
+    <div class="container">
+
+        <header id="intro" data-aos>
+            <span class="badge">ORION TECH MASTER DOSSIER v1.0</span>
+            <h1>TIERRA LUNA</h1>
+            <div style="color: var(--tlc-gold); letter-spacing: 12px; font-weight: 300;">ELITE STRATEGY</div>
+        </header>
+
+        <!-- 1. RESUMEN EJECUTIVO -->
+        <section id="resumen" data-aos>
+            <div class="module-header">
+                <span class="module-num">01</span>
+                <h2>Resumen Ejecutivo</h2>
+            </div>
+            <div class="glass-box">
+                <p><strong>Tierra Luna Cellars</strong> posee el activo más escaso del mercado: Una narrativa de
+                    autenticidad heroica (Dr. José Hernández, Astronauta). Orion Tech consolidará la marca mediante la
+                    fusión de Retail Físico Intensivo e Inteligencia Digital.</p>
+                <div class="grid-3" style="margin-top: 2rem;">
+                    <div style="text-align:center;">
+                        <div style="font-size: 2.5rem; font-weight: 800; color: var(--orion-blue);">$4.2M</div>
+                        <div style="font-size: 0.7rem; color: #888;">EST. REVENUE</div>
+                    </div>
+                    <div style="text-align:center;">
+                        <div style="font-size: 2.5rem; font-weight: 800; color: var(--orion-blue);">12.4x</div>
+                        <div style="font-size: 0.7rem; color: #888;">MARKETING ROI</div>
+                    </div>
+                    <div style="text-align:center;">
+                        <div style="font-size: 2.5rem; font-weight: 800; color: var(--orion-blue);">15k+</div>
+                        <div style="font-size: 0.7rem; color: #888;">NEW CLUB MEMBERS</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. ANALISIS DE MERCADO & AUDIT -->
+        <section id="mkt" data-aos>
+            <div class="module-header">
+                <span class="module-num">05</span>
+                <h2>Digital Audit & Market</h2>
+            </div>
+            <div class="grid-2">
+                <div class="glass-box">
+                    <h3>Social Health</h3>
+                    <p><strong>Engagement: 0.45%.</strong> Identificamos una cuenta estática. Implementaremos el
+                        "Gravity Loop" para multiplicar la interacción por 3.1x usando carruseles dinámicos y Reels de
+                        alta producción.</p>
+                </div>
+                <div class="glass-box">
+                    <h3>Benchmarking (Lodi)</h3>
+                    <p>Con 85+ bodegas, Tierra Luna debe diferenciarse no por terroir, sino por
+                        <strong>Aspiración</strong>. Orion creará un "Océano Azul" donde el vino es solo el ticket de
+                        entrada a una comunidad de soñadores.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. PRODUCTOS & PRECIOS -->
+        <section id="product" data-aos>
+            <div class="module-header">
+                <span class="module-num">04</span>
+                <h2>Productos & Precios Elite</h2>
+            </div>
+            <div class="glass-box">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Tipo</th>
+                            <th>Estrategia Tech</th>
+                            <th>Precio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Stella Z</strong></td>
+                            <td>Zinfandel</td>
+                            <td>AR Storytelling Video</td>
+                            <td>$28.99</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Nova Stella</strong></td>
+                            <td>Sauvignon Blanc</td>
+                            <td>3D Web Preview</td>
+                            <td>$27.99</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cuatro Stellas</strong></td>
+                            <td>Red Blend Elite</td>
+                            <td>Holo-Sommelier Training</td>
+                            <td>$69.99</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 6. ESTRATEGIA POR REGION (TAKEOVER) -->
+        <section id="strategy" data-aos>
+            <div class="module-header">
+                <span class="module-num">06</span>
+                <h2>Bay Area Takeover</h2>
+                <div style="margin-left: auto; color: var(--orion-blue); font-size: 0.8rem;">THE LAUNCH SEQUENCE</div>
+            </div>
+            <div class="grid-3">
+                <div class="glass-box" style="padding: 2rem;">
+                    <h3 style="color: var(--orion-blue);">IGNITION</h3>
+                    <p style="font-size: 0.85rem;"><strong>San José (Santana Row).</strong><br>Activación de Smart
+                        Displays y demostración AR a VCs de Tech.</p>
+                </div>
+                <div class="glass-box" style="padding: 2rem;">
+                    <h3 style="color: var(--tlc-gold);">ORBIT</h3>
+                    <p style="font-size: 0.85rem;"><strong>SF (Chabot Space Center).</strong><br>Gala inmersiva bajo
+                        proyecciones del Planetario.</p>
+                </div>
+                <div class="glass-box" style="padding: 2rem;">
+                    <h3 style="color: var(--tlc-burgundy);">RE-ENTRY</h3>
+                    <p style="font-size: 0.85rem;"><strong>Napa Valley Winery.</strong><br>Alianzas industriales y
+                        lanzamiento del Collectors NFT Club.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. ROI & ROI -->
+        <section id="roi" data-aos>
+            <div class="module-header">
+                <span class="module-num">09</span>
+                <h2>Proyecciones & ROI</h2>
+            </div>
+            <div class="glass-box">
+                <p>Con una inversión en el nivel <strong>Interstellar ($350k)</strong>, estimamos un break-even en el
+                    Mes 7. La captura de datos de 15,000 perfiles únicos generará un valor de marca residual superior a
+                    los $2M anuales.</p>
+                <div style="text-align:center;">
+                    <a href="#" class="cta-btn">Aprobar Misión</a>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            ORION TECH USA &bull; MASTER STRATEGY V1.0 &bull; 2026
+        </footer>
+
+    </div>
+
+    <script>
+        const obs = new IntersectionObserver((es) => {
+            es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('[data-aos]').forEach(el => obs.observe(el));
+    </script>
+
+</body>
+
+</html>
