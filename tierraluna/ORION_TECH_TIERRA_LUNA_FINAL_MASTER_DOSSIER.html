@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORION TECH | Tierra Luna Final Master Dossier</title>
+    <!-- Fonts: Inter (Tech/Utility), Playfair Display (Luxury/Brand) -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --orion-blue: #00f2ff;
+            --tlc-gold: #c5a059;
+            --tlc-wine: #7a1f2e;
+            --space: #050510;
+            --glass: rgba(10, 15, 30, 0.95);
+            --border: rgba(255, 255, 255, 0.1);
+            --text-dim: #a0a0b0;
+            --transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        body {
+            background-color: var(--space);
+            background-image:
+                radial-gradient(circle at 0% 0%, rgba(0, 242, 255, 0.05), transparent 40%),
+                radial-gradient(circle at 100% 100%, rgba(197, 160, 89, 0.05), transparent 40%);
+            color: #efefef;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* --- GLOBAL PROGRESS / NAV --- */
+        .side-progress {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--border);
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .dot:hover {
+            background: var(--orion-blue);
+            transform: scale(1.4);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* --- COVER --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .badge {
+            background: rgba(0, 242, 255, 0.1);
+            color: var(--orion-blue);
+            padding: 8px 24px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 4px;
+            border: 1px solid var(--orion-blue);
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(4rem, 15vw, 9rem);
+            margin: 0;
+            line-height: 0.8;
+            color: #fff;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--tlc-gold);
+            letter-spacing: 15px;
+            text-transform: uppercase;
+            margin-top: 2rem;
+            font-weight: 300;
+        }
+
+        /* --- MODULES --- */
+        section {
+            padding: 10rem 0;
+        }
+
+        .module-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 8rem;
+            color: rgba(255, 255, 255, 0.02);
+            position: absolute;
+            left: -2rem;
+            top: -4rem;
+            line-height: 1;
+            z-index: -1;
+        }
+
+        .module-title {
+            position: relative;
+            margin-bottom: 4rem;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin: 0;
+            border-left: 6px solid var(--orion-blue);
+            padding-left: 2rem;
+        }
+
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 4rem;
+            transition: var(--transition);
+        }
+
+        .glass-card:hover {
+            border-color: var(--orion-blue);
+            box-shadow: 0 0 60px rgba(0, 242, 255, 0.1);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        /* --- DIAGNOSTIC COMPONENTS --- */
+        .metric-box {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 2.5rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid transparent;
+            transition: var(--transition);
+        }
+
+        .metric-box:hover {
+            border-color: var(--tlc-gold);
+            background: rgba(197, 160, 89, 0.05);
+        }
+
+        .val {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--orion-blue);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .lab {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .audit-point {
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border-left: 3px solid var(--tlc-wine);
+        }
+
+        /* --- STRATEGY COMPONENTS --- */
+        .strategy-header {
+            color: var(--orion-blue);
+            letter-spacing: 2px;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        /* --- TABLES --- */
+        .elite-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+        }
+
+        .elite-table th {
+            text-align: left;
+            padding: 1.5rem;
+            color: var(--tlc-gold);
+            border-bottom: 2px solid var(--border);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+
+        .elite-table td {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.95rem;
+        }
+
+        .elite-table tr:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        /* --- ANIMATIONS (data-aos) --- */
+        [data-aos] {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: 1.2s;
+        }
+
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.5rem 5rem;
+            background: linear-gradient(90deg, var(--tlc-gold), #fff);
+            color: #000;
+            font-weight: 900;
+            text-decoration: none;
+            border-radius: 100px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            box-shadow: 0 0 40px rgba(197, 160, 89, 0.4);
+            margin-top: 4rem;
+            transition: var(--transition);
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 60px var(--orion-blue);
+        }
+
+        footer {
+            text-align: center;
+            border-top: 1px solid var(--border);
+            padding: 8rem 0;
+            color: #444;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+        }
+
+        @media (max-width: 1000px) {
+
+            .grid-2,
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .side-progress {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="side-progress">
+        <a href="#hero" class="dot"></a>
+        <a href="#audit" class="dot"></a>
+        <a href="#strategy" class="dot"></a>
+        <a href="#product" class="dot"></a>
+        <a href="#roi" class="dot"></a>
+    </nav>
+
+    <div class="container">
+
+        <!-- COVER -->
+        <section class="hero" id="hero">
+            <div class="badge" data-aos>Master Strategy Consolidation V10</div>
+            <h1 data-aos>TIERRA LUNA</h1>
+            <div class="subtitle" data-aos>Earth. Moon. Wine. Orion.</div>
+        </section>
+
+        <!-- MODULE 01: DIAGNOSTICO (AUDIT) -->
+        <section id="audit">
+            <div class="module-title" data-aos>
+                <span class="module-num">01</span>
+                <h2>Intelligence Audit & Diagnostic</h2>
+            </div>
+            <div class="glass-card" data-aos>
+                <div class="grid-2">
+                    <div>
+                        <h3>Brand Story & Position</h3>
+                        <p><strong>The Astronaut's Legacy:</strong> Dr. José Hernández (STS-128). De campesino migrante
+                            a astronauta de la NASA. La marca es la representación física de "Reaching for the Stars".
+                        </p>
+                        <div class="audit-point">
+                            <span style="color: var(--tlc-gold); font-weight: 700;">STRENGTH:</span> Narrativa única en
+                            el mundo. El vino es cosmogónico.
+                        </div>
+                    </div>
+                    <div class="grid-2" style="gap:1rem;">
+                        <div class="metric-box"><span class="val">0.45%</span><span class="lab">Social Engagement</span>
+                        </div>
+                        <div class="metric-box"><span class="val">1/85</span><span class="lab">Lodi Competitive
+                                Gap</span></div>
+                        <div class="metric-box" style="grid-column: span 2;"><span class="val">3.1x</span><span
+                                class="lab">Ad Reach Potential</span></div>
+                    </div>
+                </div>
+                <div style="margin-top: 3rem;">
+                    <h3>Digital Reality Check</h3>
+                    <p>El sitio web <strong>tierralunacellars.com</strong> es transaccional (Shopify Style). Falta
+                        **experiencia inmersiva**. El SEO es genérico. Las redes sociales están "congeladas" en imágenes
+                        estáticas sin tracción.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE 02: THE DUAL WAR (GROUND & AIR) -->
+        <section id="strategy">
+            <div class="module-title" data-aos>
+                <span class="module-num">02</span>
+                <h2>The Dual War Strategy</h2>
+            </div>
+            <div class="grid-2">
+                <!-- GROUND WAR -->
+                <div class="glass-card" data-aos>
+                    <span class="strategy-header">GROUND WAR (PHYSICAL RETAIL)</span>
+                    <h3>The Gravity Well System</h3>
+                    <p>Instalación de terminales NFC en estantes físicos. Al acercarse la botella al celular, se dispara
+                        una cata visual con el Dr. Hernández.</p>
+                    <ul style="color: var(--text-dim); padding-left: 1rem;">
+                        <li><strong>Smart Displays:</strong> En licorerías premium de SF/SJ.</li>
+                        <li><strong>HORECA VIP:</strong> Menús AR en restaurantes seleccionados.</li>
+                        <li><strong>Retail Intel:</strong> Captura de datos físicos para retargeting.</li>
+                    </ul>
+                </div>
+                <!-- AIR WAR -->
+                <div class="glass-card" data-aos>
+                    <span class="strategy-header">AIR WAR (DIGITAL FUNNEL)</span>
+                    <h3>The Constellation Funnel</h3>
+                    <p>Un sistema de 3 anillos de impacto diseñado para Silicon Valley:</p>
+                    <ul style="color: var(--text-dim); padding-left: 1rem;">
+                        <li><strong>Phase 1:</strong> LinkedIn Awareness para regalos corporativos Tech.</li>
+                        <li><strong>Phase 2:</strong> Meta Meta-Conversion retargeting dinámico.</li>
+                        <li><strong>Phase 3:</strong> Holo-Sommelier AI 24/7 de soporte y venta.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE 03: PRODUCT & PRICING -->
+        <section id="product">
+            <div class="module-title" data-aos>
+                <span class="module-num">03</span>
+                <h2>Product Galaxy & Events</h2>
+            </div>
+            <div class="glass-card" data-aos>
+                <table class="elite-table">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Perfil</th>
+                            <th>Tech Layer</th>
+                            <th>MSRP</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Stella Z</strong></td>
+                            <td>Zinfandel Old Vine</td>
+                            <td>AR Heritage Story</td>
+                            <td>$28.99</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Nova Stella</strong></td>
+                            <td>Sauvignon Blanc</td>
+                            <td>3D Web Visualization</td>
+                            <td>$27.99</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cuatro Stellas</strong></td>
+                            <td>Red Blend Elite</td>
+                            <td>Holo-Sommelier Access</td>
+                            <td>$69.99</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div style="margin-top: 4rem;">
+                    <h3>The Takeover Sequence (Events)</h3>
+                    <div class="grid-3">
+                        <div style="border-left: 2px solid var(--orion-blue); padding-left: 1.5rem;">
+                            <span style="font-weight: 800; color: var(--orion-blue);">IGNITION (SJ)</span>
+                            <p style="font-size: 0.85rem;">Santana Row Showcase. Tech Execs Exclusive.</p>
+                        </div>
+                        <div style="border-left: 2px solid var(--tlc-gold); padding-left: 1.5rem;">
+                            <span style="font-weight: 800; color: var(--tlc-gold);">ORBIT (SF)</span>
+                            <p style="font-size: 0.85rem;">Chabot Planetarium. Cinematic Tasting.</p>
+                        </div>
+                        <div style="border-left: 2px solid var(--tlc-wine); padding-left: 1.5rem;">
+                            <span style="font-weight: 800; color: var(--tlc-wine);">RE-ENTRY (Napa)</span>
+                            <p style="font-size: 0.85rem;">Napa Vineyard. Collectors NFT Club Launch.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULE 04: ROI & FINANCIALS -->
+        <section id="roi">
+            <div class="module-title" data-aos>
+                <span class="module-num">04</span>
+                <h2>Investment & ROI Analysis</h2>
+            </div>
+            <div class="glass-card" data-aos>
+                <div class="grid-2">
+                    <div>
+                        <h3>Cost-Benefit Modeling</h3>
+                        <p>Invertir en el Tier **Interstellar ($350k)** no es un gasto, es un **fondo de capitalización
+                            de datos**. Proyectamos un ROAS de 12.4x basado en benchmarks de marcas premium en CA.</p>
+                        <div class="audit-point"
+                            style="border-color: var(--orion-blue); background: rgba(0,242,255,0.05);">
+                            <span style="color: #fff; font-weight: 800;">REVENUE PROJECTION: $4.2M (Y1)</span>
+                        </div>
+                    </div>
+                    <table class="elite-table" style="margin-top:0;">
+                        <thead>
+                            <tr>
+                                <th>Paquete</th>
+                                <th>Setup</th>
+                                <th>Target ROI</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>🚀 Launchpad</td>
+                                <td>$60k</td>
+                                <td>4x</td>
+                            </tr>
+                            <tr>
+                                <td>🛰️ Orbit</td>
+                                <td>$150k</td>
+                                <td>8x</td>
+                            </tr>
+                            <tr>
+                                <td style="color: var(--tlc-gold); font-weight: 800;">🌌 Interstellar</td>
+                                <td>$350k</td>
+                                <td>12.4x</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div style="text-align: center;">
+                <a href="#" class="cta-button" data-aos>Iniciar Secuencia de Lanzamiento</a>
+            </div>
+        </section>
+
+        <footer>
+            ORION TECH STRATEGIC ARCHITECT &bull; FINAL MASTER CONSOLIDATION V10 &bull; 2026
+        </footer>
+
+    </div>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('[data-aos]').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORION TECH | Tierra Luna Strategy V6 - Elite Audit</title>
+    <!-- Fonts: Inter for Tech, Playfair Display for Luxury/Wine -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            /* ORION CORE PALETTE */
+            --orion-blue: #00f2ff;
+            --orion-dark: #050510;
+            --orion-glass: rgba(10, 15, 30, 0.9);
+
+            /* CLIENT BRAND (Tierra Luna) */
+            --tlc-gold: #c5a059;
+            --tlc-burgundy: #7a1f2e;
+            --tlc-space: #0b0e14;
+
+            --border: rgba(255, 255, 255, 0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            background-color: var(--tlc-space);
+            background-image:
+                radial-gradient(circle at 5% 5%, rgba(0, 242, 255, 0.05), transparent 40%),
+                radial-gradient(circle at 95% 95%, rgba(197, 160, 89, 0.05), transparent 40%);
+            color: #efefef;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        /* --- HEADER --- */
+        header {
+            text-align: center;
+            margin-bottom: 8rem;
+        }
+
+        .v-badge {
+            background: rgba(0, 242, 255, 0.1);
+            color: var(--orion-blue);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            border: 1px solid rgba(0, 242, 255, 0.2);
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 10vw, 6rem);
+            margin: 0;
+            line-height: 0.9;
+            color: #fff;
+        }
+
+        .hero-sub {
+            color: var(--tlc-gold);
+            font-size: 1.2rem;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            margin-top: 1.5rem;
+            font-weight: 300;
+        }
+
+        /* --- MODULE STYLING --- */
+        .module {
+            margin-bottom: 8rem;
+        }
+
+        .module-title {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .module-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            color: rgba(255, 255, 255, 0.05);
+            line-height: 1;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin: 0;
+            color: var(--tlc-gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* --- CARDS & GRID --- */
+        .glass-card {
+            background: var(--orion-glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 3rem;
+            transition: var(--transition);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        /* --- TABLES --- */
+        .elite-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+        }
+
+        .elite-table th {
+            text-align: left;
+            padding: 1.5rem;
+            color: var(--tlc-gold);
+            border-bottom: 2px solid var(--border);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .elite-table td {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* --- AUDIT SPECIFICS --- */
+        .audit-point {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 3px solid var(--orion-blue);
+            margin-bottom: 1rem;
+        }
+
+        .audit-label {
+            font-size: 0.75rem;
+            color: var(--orion-blue);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .audit-val {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            border-top: 1px solid var(--border);
+            padding: 4rem 0;
+            color: #555;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+
+            .grid-2,
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* --- ANIMATIONS (Trigger on Scroll) --- */
+        [data-aos] {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: 1s;
+        }
+
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- HEADER -->
+        <header data-aos>
+            <div class="v-badge">STRATEGIC DOSSIER v6.0</div>
+            <h1>TIERRA LUNA</h1>
+            <div class="hero-sub">Interstellar Digital Intelligence</div>
+        </header>
+
+        <!-- 01: AUDITORÍA DIGITAL & MERCADO -->
+        <section class="module" data-aos>
+            <div class="module-title">
+                <span class="module-num">01</span>
+                <h2>Digital Intelligence & Market Audit</h2>
+            </div>
+
+            <div class="grid-2">
+                <div class="glass-card">
+                    <h3>Posicionamiento de Marca</h3>
+                    <p>Tierra Luna opera en un <strong>Océano Azul</strong> dentro de Lodi, CA. Mientras competidores
+                        como <em>Michael David Winery</em> o <em>Jessie's Grove</em> compiten por tradición, Tierra Luna
+                        compite en <strong>Aspiración & Narrativa Heroica</strong>.</p>
+                    <div class="audit-point">
+                        <span class="audit-label">RECONOCIMIENTO DE MARCA</span>
+                        <span class="audit-val">Pico en 2024 (Biopic Boost)</span>
+                        <p style="font-size: 0.85rem; color: var(--text-gray);">El 52% del crecimiento en e-commerce
+                            proviene de tráfico directo post-película, validando el impacto de la historia del Dr.
+                            Hernández.</p>
+                    </div>
+                    <div class="audit-point">
+                        <span class="audit-label">BENCHMARK REGIONAL (LODI)</span>
+                        <p style="font-size: 0.85rem;"><strong>Competencia:</strong> 85+ bodegas.<br><strong>Gaps
+                                detectados:</strong> Falta de integración Tech en la experiencia de cata local.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card">
+                    <h3>Social Media Performance</h3>
+                    <div style="display: flex; gap: 1rem; margin-bottom: 2rem;">
+                        <div
+                            style="flex:1; text-align: center; background: rgba(0,242,255,0.05); padding: 1rem; border-radius: 8px;">
+                            <div style="font-size: 1.5rem; color: var(--orion-blue);">0.45%</div>
+                            <div style="font-size: 0.7rem; color: var(--text-gray);">Engagement Avg</div>
+                        </div>
+                        <div
+                            style="flex:1; text-align: center; background: rgba(197, 160, 89, 0.05); padding: 1rem; border-radius: 8px;">
+                            <div style="font-size: 1.5rem; color: var(--tlc-gold);">3.1x</div>
+                            <div style="font-size: 0.7rem; color: var(--text-gray);">Carousel Reach</div>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.9rem;"><strong>Diagnóstico Orion:</strong> La cuenta es "estática". Falta
+                        contenido <em>Reels</em> y <em>Social-Proof</em> en tiempo real. La comunidad responde a la
+                        historia personal, pero se pierde el impulso e-commerce al no tener un funnel de conversión
+                        directo en los posts.</p>
+                    <div class="audit-point">
+                        <span class="audit-label">OPORTUNIDAD</span>
+                        <p style="font-size: 0.85rem;">Implementar el <strong>"Gravity Loop"</strong>: Convertir cada
+                            1,000 impresiones en 30 leads directos vía DM Automation.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card" style="margin-top: 2rem;">
+                <h3>Web Audit & Content (tierralunacellars.com)</h3>
+                <table class="elite-table">
+                    <thead>
+                        <tr>
+                            <th>Métrica de Auditoría</th>
+                            <th>Estado Actual</th>
+                            <th>Impacto Orion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>SEO / Keywords</strong></td>
+                            <td>Dominio genérico, baja autoridad.</td>
+                            <td>Dominación de nicho: "Celebrity Astronaut Wine".</td>
+                        </tr>
+                        <tr>
+                            <td><strong>UX / Conversión</strong></td>
+                            <td>Transaccional estándar (Shopify-like).</td>
+                            <td>Experiencia Inmersiva (Scroll Storytelling).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Performance</strong></td>
+                            <td>Standard (Retardo en carga de imágenes).</td>
+                            <td>Optimización "Edge-Computing" (Load < 1s).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Contenido</strong></td>
+                            <td>Enfoque en fotos de botellas estáticas.</td>
+                            <td>Contenido Dinámico: 3D, Video Hero, AI-Chat.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 02: PRODUCT ANALYSIS (REFINED) -->
+        <section class="module" data-aos>
+            <div class="module-title">
+                <span class="module-num">02</span>
+                <h2>Product Deep-Dive</h2>
+            </div>
+            <div class="grid-3">
+                <div class="glass-card" style="text-align: center;">
+                    <h3 style="color: #fff;">Stella Z</h3>
+                    <div style="font-size: 0.7rem; color: var(--tlc-gold);">OLD VINE ZINFANDEL</div>
+                    <p style="font-size: 0.85rem; color: var(--text-gray); margin: 1.5rem 0;">Aromas de frambuesa y
+                        pimienta. El "Caballo de Troya" para entrar en paladares premium.</p>
+                    <div style="font-size: 1.2rem; font-weight: 700;">$28.99</div>
+                </div>
+                <div class="glass-card" style="text-align: center; border-color: var(--orion-blue);">
+                    <h3 style="color: #fff;">Nova Stella</h3>
+                    <div style="font-size: 0.7rem; color: var(--orion-blue);">SAUVIGNON BLANC</div>
+                    <p style="font-size: 0.85rem; color: var(--text-gray); margin: 1.5rem 0;">Crisp, cítrico, 100%
+                        acero. El favorito del mercado joven y dinámico.</p>
+                    <div style="font-size: 1.2rem; font-weight: 700;">$27.99</div>
+                </div>
+                <div class="glass-card" style="text-align: center;">
+                    <h3 style="color: #fff;">Cuatro Stellas</h3>
+                    <div style="font-size: 0.7rem; color: var(--tlc-gold);">RED BLEND</div>
+                    <p style="font-size: 0.85rem; color: var(--text-gray); margin: 1.5rem 0;">Complejidad extrema: Cedar
+                        y Santa Rosa Plum. El producto "Icono".</p>
+                    <div style="font-size: 1.2rem; font-weight: 700;">$69.99</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 03: FINANCIAL PACKAGES -->
+        <section class="module" data-aos>
+            <div class="module-title">
+                <span class="module-num">03</span>
+                <h2>Investment & ROI Logic</h2>
+            </div>
+            <div class="glass-card">
+                <table class="elite-table">
+                    <thead>
+                        <tr>
+                            <th>Tier</th>
+                            <th>Digital Audit Fix</th>
+                            <th>Ad Model</th>
+                            <th>Inversión</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>🚀 LAUNCHPAD</strong></td>
+                            <td>Web Optimization + Social Kit</td>
+                            <td>Social Ads Local</td>
+                            <td>$60,000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>🛰️ ORBIT (PRO)</strong></td>
+                            <td>Full Experience + AR App</td>
+                            <td>Multi-Channel Funnel</td>
+                            <td style="color: var(--orion-blue); font-weight: 700;">$150,000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>🌌 INTERSTELLAR</strong></td>
+                            <td>Holo-Sommelier + POS Retail</td>
+                            <td>National Takeover</td>
+                            <td style="color: var(--tlc-gold); font-weight: 700;">$350,000+</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div
+                    style="margin-top: 3rem; padding: 2rem; border-left: 4px solid var(--tlc-gold); background: rgba(197, 160, 89, 0.05);">
+                    <h4 style="margin:0; color: var(--tlc-gold);">RESULTADO ESPERADO</h4>
+                    <p style="margin: 0.5rem 0; font-size: 0.9rem;">Implementando el Tier <strong>Interstellar</strong>,
+                        proyectamos un incremento del 300% en la captura de leads orgánicos y una facturación estimada
+                        de <strong>$4.2M USD</strong> en el primer ciclo de 18 meses.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            ORION TECH STRATEGIC DIVISION &bull; TIERRA LUNA DOSSIER V6 &bull; 2026
+        </footer>
+
+    </div>
+
+    <script>
+        // Animation trigger on scroll
+        const obs = new IntersectionObserver((es) => {
+            es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('[data-aos]').forEach(el => obs.observe(el));
+    </script>
+
+</body>
+
+</html>
